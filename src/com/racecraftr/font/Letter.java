@@ -65,7 +65,12 @@ public class Letter {
     public static final Letter hashtag = new Letter('#', new int[] {10, 10, 31, 10, 31, 10, 10});
     public static final Letter comma = new Letter(',', new int[] {0, 0, 0, 0, 0, 6, 2});
     public static final Letter apost = new Letter('\'', new int[] {6, 6, 0, 0, 0, 0, 0});
-
+    public static final Letter fslash = new Letter('/', new int[] {16, 16, 8, 8, 4, 4, 2});
+    public static final Letter bslash = new Letter('\\', new int[]{2, 4, 8, 16, 16});
+    public static final Letter bar = new Letter('|', new int[]{8 ,8 ,8 ,8 ,8, 8, 8});
+    public static final Letter dash = new Letter ('`',new int[]{1, 2, 0, 0, 0, 0, 0});
+    public static final Letter tilda = new Letter ('~', new int[]{24, 9, 0, 0, 0, 0,0 });
+    public static final Letter at = new Letter ('@', new int[]{6, 9, 25, 21, 29, 1, 18});
 
     public static final Map<Character, Letter> LETTER_MAP = new HashMap<>();
     static {
@@ -128,6 +133,12 @@ public class Letter {
         LETTER_MAP.put('#', hashtag);
         LETTER_MAP.put(',', comma);
         LETTER_MAP.put('\'', apost);
+        LETTER_MAP.put('/', fslash);
+        LETTER_MAP.put('\\', bslash);
+        LETTER_MAP.put('@', at);
+        LETTER_MAP.put('|', bar);
+        LETTER_MAP.put('~', tilda);
+        LETTER_MAP.put('`', dash);
     }
 
     public static final int ROWS = 7;
@@ -143,7 +154,7 @@ public class Letter {
     public void printLetter() {
         for (int i = 0; i < spec.length; i++) {
             System.out.print(getRow(i));
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -151,7 +162,7 @@ public class Letter {
         int i = spec[row];
         char[] line = new char[6];
         for (int j = 0; j < 5; j++) {
-            line[j] = (((i >> j) & 1) == 0 ? ' ': letterType);
+            line[j] = (((i >> j) & 1) == 0 ? ' ': letterType); //get binary digits: 0 -> ' ': 1 -> letterType
         }
         line[5] = ' ';
         return new String(line);
